@@ -34,6 +34,8 @@ print(p.findall(data))
 ```
 ['python one']
 ```
+문자열 전체의 처음이 아니라 각 줄의 처음으로 인식시키고 싶을때 MULTILINE(M) 사용
+
 코드2
 ```
 p = compile("^python\s\w+", M)
@@ -43,3 +45,31 @@ print(p.findall(data))
 ```
 ['python one', 'python two', 'python three']
 ```
+##### VERBOSE, X
+정규식을 주석 또는 줄단위로 구분할 수 있는 옵션
+```
+p = compile(r'&[#](0[0-7]+|[0-9]+|x[0-9a-fA-F]+);')
+```
+
+```
+p = compile(r"""
+            &[#]            # Start of a numeric entity reference
+            (
+            0[0-7]+         # Octal form
+            |[0-9]+         # Decimal form
+            |x[0-9a-fA-F]+  # Hexadecimal form
+            )
+            ;               # trailing semicolon
+            """, X)
+```
+#### 역슬래시 문제
+예를 들어 \section 문자열을 찾기 위한 정규식을 만들때
+`\section` 는 \s 문자가 whitespace로 해석되어 `[\t\n\r\f\v]ection` 으로 읽어져서 '\\section` 이라고 해야함
+
+파이썬 정규식 엔진의 문제로 \\이 \로 변경되어 \\ 를 전달하려면 \\\\라고 해야함
+
+이 문제를 해결하려면 raw string 표현법을 사용해야한다.
+```
+p = compile(r'\\section')
+```
+
