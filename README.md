@@ -64,7 +64,7 @@ p = compile(r"""
 ```
 #### 역슬래시 문제
 예를 들어 \section 문자열을 찾기 위한 정규식을 만들때
-`\section` 는 \s 문자가 whitespace로 해석되어 `[\t\n\r\f\v]ection` 으로 읽어져서 '\\section` 이라고 해야함
+`\section` 는 \s 문자가 whitespace로 해석되어 `[\t\n\r\f\v]ection` 으로 읽어져서 `\\section` 이라고 해야함
 
 파이썬 정규식 엔진의 문제로 \\이 \로 변경되어 \\ 를 전달하려면 \\\\라고 해야함
 
