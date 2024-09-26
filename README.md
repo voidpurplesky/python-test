@@ -9,6 +9,11 @@
 ##### [] 문자 - 문자 클래스
 
 ####  컴파일 옵션
+- DOTALL S : .이 줄바꿈 문자 \n를 포함해 모든 문자와 매치
+- IGNORECASE I : 대소문자에 관계없이
+- MUTILINE M : 여러줄과 매치 ^ $ 메타문자 사용과 관계
+- VERBOSE X : verbose 모드. 정규식을 보기 편하게 만들고 주석 사용 가능
+  
 ##### DOTALL, S
 ##### IGNORECASE, I
 ##### MULTILINE, M
@@ -19,7 +24,7 @@
 예를 들어, ^python인 경우, 문자열의 처음은 항상 python으로 시작해야 매치됨
 
 python$이라면 문자열의 마지막은 항상 python으로 끝나야 매치됨
-코드1
+- 코드1
 ```
 data = """python one
 life is too short
@@ -30,18 +35,18 @@ python three"""
 p = compile("^python\s\w+")
 print(p.findall(data))
 ```
-결과1
+- 결과1
 ```
 ['python one']
 ```
 문자열 전체의 처음이 아니라 각 줄의 처음으로 인식시키고 싶을때 MULTILINE(M) 사용
 
-코드2
+- 코드2
 ```
 p = compile("^python\s\w+", M)
 print(p.findall(data))
 ```
-결과2
+- 결과2
 ```
 ['python one', 'python two', 'python three']
 ```
